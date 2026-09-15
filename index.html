@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berkenbrock Duplex 06 - Cachoeira do Bom Jesus</title>
+    <!-- Ícones FontAwesome e Google Fonts -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link href="https://googleapis.com" rel="stylesheet">
+    
+    <style>
+        /* Estilos Globais e Paleta de Cores do Rascunho */
+        :root {
+            --azul-escuro: #0f2c42;
+            --azul-mar: #1d5276;
+            --verde-whatsapp: #25d366;
+            --cor-areia: #fcfbfa;
+            --texto-escuro: #333333;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--cor-areia); color: var(--texto-escuro); scroll-behavior: smooth; }
+        img { max-width: 100%; display: block; border-radius: 8px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Botões */
+        .btn-whats {
+            background-color: var(--verde-whatsapp);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .btn-whats:hover { transform: scale(1.05); }
+
+        /* Cabeçalho / Menu */
+        header { background-color: rgba(15, 44, 66, 0.95); position: fixed; width: 100%; top: 0; z-index: 1000; padding: 15px 0; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: white; font-weight: 700; font-size: 1.2rem; }
+        nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
+        
+        /* Seção 1: Hero (Topo) */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://unsplash.com') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+        .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; }
+
+        /* Seção 2: Conheça o Duplex */
+        .duplex-intro { padding: 80px 0; background: white; }
+        .duplex-intro h2 { font-size: 2rem; color: var(--azul-escuro); margin-bottom: 30px; }
+        .grid-fotos { display: grid; grid-template-columns: 2fr 1fr; gap: 15px; margin-top: 20px; }
+        .fotos-subgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        /* Seção 3: Comodidades (Tudo que você precisa) */
+        .comodidades { padding: 80px 0; background-color: var(--cor-areia); }
+        .comodidades-wrapper { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: center; }
+        .comodidades-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .comodidade-item { background: white; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #eee; }
+        .comodidade-item i { color: var(--azul-mar); font-size: 1.5rem; margin-bottom: 10px; }
+
+        /* Seção 4: Banner Promocional */
+        .promo-banner { background-color: var(--azul-escuro); color: white; padding: 60px 0; text-align: center; }
+        .promo-banner h2 { font-size: 2.2rem; margin-bottom: 15px; }
+        .promo-banner p { margin-bottom: 25px; opacity: 0.9; }
+
+        /* Seção 5: Formulário e Contato */
+        .contato { padding: 80px 0; background: white; }
+        .contato-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        form input, form textarea { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+        form button { background-color: var(--azul-escuro); color: white; padding: 12px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; }
+
+        /* Rodapé */
+        footer { background-color: var(--azul-escuro); color: white; padding: 40px 0; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .social-icons a { color: white; font-size: 1.3rem; margin-right: 15px; }
+        
+        /* Botão Fixo de WhatsApp no Canto */
+        .whats-fixo { position: fixed; bottom: 20px; right: 20px; background-color: var(--verde-whatsapp); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 1000; text-decoration: none; }
+
+        /* Responsividade para Celulares */
+        @media (max-width: 768px) {
+            .nav-container nav { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .grid-fotos, .comodidades-wrapper, .comodidades-grid, .contato-wrapper, .footer-grid { grid-template-columns: 1fr; }
+            .fotos-subgrid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONFIGURAÇÃO DO SEU WHATSAPP: Substitua o número abaixo pelo seu (com DDD) -->
+    <!-- Substitua '5548999999999' pelo seu número real -->
+
+    <!-- Menu Superior -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">BERKENBROCK DUPLEX 06</div>
+            <nav>
+                <a href="#inicio">Início</a>
+                <a href="#duplex">O Apto</a>
+                <a href="#comodidades">Comodidades</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Bloco 1: Hero (Topo) -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h1>Sua estadia em grande estilo na<br>Cachoeira do Bom Jesus</h1>
+            <p>Apartamento duplex completo a poucos metros do mar calmo de Florianópolis.</p>
+            <!-- MENSAGEM PRÉ-DEFINIDA 1 -->
+            <a href="https://wa.me." target="_blank" class="btn-whats">
+                <i class="fab fa-whatsapp"></i> Reservar via WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Bloco 2: Galeria e Apresentação -->
+    <section id="duplex" class="duplex-intro">
+        <div class="container">
+            <h2>Conheça o Apto Duplex 06</h2>
+            <p>Ambientes amplos, iluminados e decorados para oferecer o máximo de conforto para sua família durante as férias de verão.</p>
+            
+            <div class="grid-fotos">
+                <!-- Foto Principal (Substitua os links pelas fotos reais do seu imóvel) -->
+                <img src="sala.jpg" alt="Sala do Duplex">
+                <div class="fotos-subgrid">
+                    <img src="cozinha.jpg" alt="Cozinha">
+                    <img src="quarto.jpg" alt="Quarto Casal">
+                    <img src="banheiro.jpg" alt="Banheiro">
+                    <img src="sacada.jpg" alt="Sacada">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bloco 3: Comodidades -->
+    <section id="comodidades" class="comodidades">
+        <div class="container comodidades-wrapper">
+            <div>
+                <h2>Tudo que você precisa para relaxar</h2>
+                <p style="margin-bottom: 20px;">O condomínio e o apartamento estão equipados com itens de primeira linha para que você não precise se preocupar com nada.</p>
+                <a href="https://wa.me." target="_blank" class="btn-whats">
+                    <i class="fab fa-whatsapp"></i> Tirar dúvidas por Direct
+                </a>
+            </div>
+            <div class="comodidades-grid">
+                <div class="comodidade-item"><i class="fas fa-wifi"></i><p>Wi-Fi de Alta Velocidade</p></div>
+                <div class="comodidade-item"><i class="fas fa-snowflake"></i><p>Ar Condicionado nos Quartos</p></div>
+                <div class="comodidade-item"><i class="fas fa-tv"></i><p>Smart TV na Sala</p></div>
+                <div class="comodidade-item"><i class="fas fa-utensils"></i><p>Cozinha Completa</p></div>
+                <div class="comodidade-item"><i class="fas fa-parking"></i><p>Estacionamento Privativo</p></div>
+                <div class="comodidade-item"><i class="fas fa-water"></i><p>Acesso Fácil à Praia</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bloco 4: Banner de Promoção -->
+    <section class="promo-banner">
+        <div class="container">
+            <h2>Garanta suas férias de Verão!</h2>
+            <p>Pacotes especiais direto com o proprietário — sem taxas extras de agências intermediárias.</p>
+            <!-- MENSAGEM PRÉ-DEFINIDA 2 (FOCO EM PROMOÇÃO) -->
+            <a href="https://wa.me." target="_blank" class="btn-whats">
+</scrip>
+</body>
+</html>
